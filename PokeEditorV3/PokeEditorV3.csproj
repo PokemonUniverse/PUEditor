@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF176AA4-93AC-4B9D-9D99-A9A66A6A46B4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PokeEditorV3</RootNamespace>
+    <AssemblyName>PokeEditorV3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NoNameLib.Files\References\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.Compatibility">
+      <HintPath>..\NoNameLib.Files\References\OpenTK.Compatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NoNameLib.Files\References\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\NoNameLib.Files\References\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\EditorConfigConstants.cs" />
+    <Compile Include="Configuration\EditorConfigInfo.cs" />
+    <Compile Include="Dialogs\FrmOkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmOkDialog.Designer.cs">
+      <DependentUpon>FrmOkDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\Dialogs\DialogBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logic\Dialogs\OkButtonContainer.cs" />
+    <Compile Include="Logic\EventDispatcher.cs" />
+    <Compile Include="Logic\Events\ConnectionEvent.cs" />
+    <Compile Include="Logic\Events\DispatchableEvent.cs" />
+    <Compile Include="Logic\Events\ConnectionEvents\EventConnectToServer.cs" />
+    <Compile Include="Logic\Events\KeyInputEvents\EventKeyPressDown.cs" />
+    <Compile Include="Logic\Events\KeyInputEvents\EventKeyPressUp.cs" />
+    <Compile Include="Logic\Events\StartupEvent.cs" />
+    <Compile Include="Logic\Events\StartupEvents\EventStartupInitialize.cs" />
+    <Compile Include="Logic\Events\StartupEvents\EventValidateConfiguration.cs" />
+    <Compile Include="Logic\Events\TileEvents\EventMovementTypeChanged.cs" />
+    <Compile Include="Logic\Events\TileEvents\EventPointerChanged.cs" />
+    <Compile Include="Logic\Events\TileEvents\EventTileMouseEvent.cs" />
+    <Compile Include="Logic\Events\KeyInputEvent.cs" />
+    <Compile Include="Logic\Events\TileEvent.cs" />
+    <Compile Include="Logic\Events\ViewEvent.cs" />
+    <Compile Include="Logic\Events\ViewEvents\EventShowDialog.cs" />
+    <Compile Include="Logic\Events\ViewEvents\EventShowWindow.cs" />
+    <Compile Include="Logic\Exceptions\ControllerException.cs" />
+    <Compile Include="Logic\Exceptions\ManagerException.cs" />
+    <Compile Include="Logic\Managers\ApplicationManager.cs" />
+    <Compile Include="Logic\Managers\ConnectionManager.cs" />
+    <Compile Include="Logic\Managers\GlobalManager.cs" />
+    <Compile Include="Logic\Managers\KeyInputManager.cs" />
+    <Compile Include="Logic\Managers\Manager.cs" />
+    <Compile Include="Logic\Managers\StartupManager.cs" />
+    <Compile Include="Logic\Managers\TileManager.cs" />
+    <Compile Include="Logic\Managers\ViewManager.cs" />
+    <Compile Include="Logic\Pointers\EraserPointer.cs" />
+    <Compile Include="Logic\Pointers\IPointer.cs" />
+    <Compile Include="Logic\Pointers\MoverPointer.cs" />
+    <Compile Include="Logic\Pointers\PlacementPointer.cs" />
+    <Compile Include="Logic\Views\LoginController.cs" />
+    <Compile Include="Logic\Views\MainWindowController.cs" />
+    <Compile Include="Logic\Windows\TileEditorController.cs" />
+    <Compile Include="Logic\Windows\TileInfoController.cs" />
+    <Compile Include="Net\OrgasmHandler.cs" />
+    <Compile Include="Net\Packet.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dialogs\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmTextureBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmTextureBrowser.Designer.cs">
+      <DependentUpon>FrmTextureBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmTileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmTileEditor.Designer.cs">
+      <DependentUpon>FrmTileEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FrmTileInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FrmTileInfo.Designer.cs">
+      <DependentUpon>FrmTileInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Subpanels\UcSettingsTabGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Subpanels\UcSettingsTabGeneral.Designer.cs">
+      <DependentUpon>UcSettingsTabGeneral.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\FrmOkDialog.resx">
+      <DependentUpon>FrmOkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmTextureBrowser.resx">
+      <DependentUpon>FrmTextureBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmTileEditor.resx">
+      <DependentUpon>FrmTileEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FrmTileInfo.resx">
+      <DependentUpon>FrmTileInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Subpanels\UcSettingsTabGeneral.resx">
+      <DependentUpon>UcSettingsTabGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\NoNameLib\NoNameLib.TileEditor\NoNameLib.TileEditor.csproj">
+      <Project>{d1df9a5b-965b-406a-8499-7dc9d2b79cea}</Project>
+      <Name>NoNameLib.TileEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NoNameLib\NoNameLib.UI\NoNameLib.UI.csproj">
+      <Project>{d9c24f46-2638-47b1-b640-f7ebda60308c}</Project>
+      <Name>NoNameLib.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NoNameLib\NoNameLib\NoNameLib.csproj">
+      <Project>{332d4c51-cca6-41f6-80c6-28a17677b9f7}</Project>
+      <Name>NoNameLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sys_base.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_switch.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
