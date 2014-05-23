@@ -25,7 +25,7 @@ namespace PokeEditorV3
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             // Setup uncaught exception catching, only if we're not running from Visual Studio thou...
             if (!AppDomain.CurrentDomain.FriendlyName.EndsWith("vshost.exe"))
@@ -68,22 +68,17 @@ namespace PokeEditorV3
             var mainForm = new FrmMain();
             Context = SynchronizationContext.Current;
 
-            if (TestUtil.IsPcMrDark)
+            Application.Run(mainForm);
+
+            // Show Login form
+            /*using (var loginForm = new FrmLogin())
             {
-                Application.Run(mainForm);
-            }
-            else
-            {
-                // Show Login form
-                using (var loginForm = new FrmLogin())
+                DialogResult result = loginForm.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    DialogResult result = loginForm.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        Application.Run(mainForm);
-                    }
+                    Application.Run(mainForm);
                 }
-            }
+            }*/
         }
 
         private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)

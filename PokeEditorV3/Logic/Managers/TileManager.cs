@@ -29,8 +29,7 @@ namespace PokeEditorV3.Logic.Managers
         /// </summary>
         public const int DEFAULT_LAYER = 0;
 
-        public string ActiveTileLeft { get; private set; }
-        public string ActiveTileRight { get; private set; }
+        public int[][] SelectedSprites { get; private set; }
         public MovementTypes MovementType { get; private set; }
 
         #endregion
@@ -188,14 +187,14 @@ namespace PokeEditorV3.Logic.Managers
 
         #endregion
 
-        public void SetActiveTile(string id)
+        public void SetSelectedSprites(int sprites)
         {
-            ActiveTileLeft = id;
+            SelectedSprites = new[] {new[] {sprites}};
         }
 
-        public void SetActiveTileRight(string id)
+        public void SetSelectedSprites(int[][] sprites)
         {
-            ActiveTileRight = id;
+            SelectedSprites = sprites;
         }
 
         #region Private Method

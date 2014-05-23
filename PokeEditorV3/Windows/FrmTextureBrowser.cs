@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using NoNameLib.UI.Controls.ImageView;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace PokeEditorV3.Windows
 {
     public partial class FrmTextureBrowser : DockContent
     {
-        private const int VIEW_TILE = 1;
-        private const int VIEW_DIRCTORY = 2;
-
-        private int currentView = VIEW_DIRCTORY;
-
         public FrmTextureBrowser()
         {
             InitializeComponent();
@@ -17,34 +15,22 @@ namespace PokeEditorV3.Windows
 
         private void FrmTextureBrowser_Load(object sender, EventArgs e)
         {
-            CurrentView = VIEW_DIRCTORY;
+            CreateNewTab();
+        }
+
+        private void CreateNewTab()
+        {
+            var tilesetView = new TilesetView();
+            tilesetView.TilesetPath = "e:\\Users\\Mr_Dark\\Dropbox\\Pokemon Universe\\Mapping\\util\\Pokemon Universe Tileset 2.png";
+            tilesetView.Dock = DockStyle.Fill;
+
+            var tabPage = new TabPage("Custom Tab");
+            tabPage.BackColor = Color.White;
+            tabPage.Controls.Add(tilesetView);
+            tcTilesets.TabPages.Add(tabPage);
         }
 
         #region Properties
-
-        private int CurrentView
-        {
-            get { return currentView; }
-            set 
-            { 
-                currentView = value;
-
-                directoryView.Visible = (currentView == VIEW_DIRCTORY);
-                tileView.Visible = (currentView == VIEW_TILE);
-            }
-        }
-
-        #endregion
-
-        #region OnClick Handlers
-
-        private void tsbSwitchView_Click(object sender, EventArgs e)
-        {
-            if (CurrentView == VIEW_DIRCTORY)
-                CurrentView = VIEW_TILE;
-            else
-                CurrentView = VIEW_DIRCTORY;
-        }
 
         #endregion
     }

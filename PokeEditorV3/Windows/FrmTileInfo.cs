@@ -70,6 +70,15 @@ namespace PokeEditorV3.Windows
                     this.rbLayerP2.ForeColor = tp.HasLayer(2) ? Color.Green : Color.Red;
                     this.rbLayerP3.ForeColor = tp.HasLayer(3) ? Color.Green : Color.Red;
 
+                    // Defaults
+                    this.tbMovementType.Text = @"Unknown";
+                    this.pbTileLayer1.Image = Resources.sys_base;
+                    this.tbTileIdLayer1.Text = @"None";
+                    this.pbTileLayer2.Image = Resources.sys_base;
+                    this.tbTileIdLayer2.Text = @"None";
+                    this.pbTileLayer3.Image = Resources.sys_base;
+                    this.tbTileIdLayer3.Text = @"None";
+
                     TilePointLayer tpLayer = tp.GetLayer(GetSelectedTilePointLayer());
                     if (tpLayer != null)
                     {
@@ -77,49 +86,24 @@ namespace PokeEditorV3.Windows
 
                         if (tpLayer.HasLayer(0))
                         {
-                            string tileId = tpLayer.GetLayer(0).TileId;
+                            string tileId = tpLayer.GetLayer(0).TileId.ToString(CultureInfo.InvariantCulture);
                             this.pbTileLayer1.Image = tileInfoController.GetBitmapForTileId(tileId);
                             this.tbTileIdLayer1.Text = tileId;
-                        }
-                        else
-                        {
-                            this.pbTileLayer1.Image = Resources.sys_base;
-                            this.tbTileIdLayer1.Text = @"None";
                         }
 
                         if (tpLayer.HasLayer(1))
                         {
-                            string tileId = tpLayer.GetLayer(1).TileId;
+                            string tileId = tpLayer.GetLayer(1).TileId.ToString(CultureInfo.InvariantCulture);
                             this.pbTileLayer2.Image = tileInfoController.GetBitmapForTileId(tileId);
                             this.tbTileIdLayer2.Text = tileId;
-                        }
-                        else
-                        {
-                            this.pbTileLayer2.Image = Resources.sys_base;
-                            this.tbTileIdLayer2.Text = @"None";
                         }
 
                         if (tpLayer.HasLayer(2))
                         {
-                            string tileId = tpLayer.GetLayer(2).TileId;
+                            string tileId = tpLayer.GetLayer(2).TileId.ToString(CultureInfo.InvariantCulture);
                             this.pbTileLayer3.Image = tileInfoController.GetBitmapForTileId(tileId);
                             this.tbTileIdLayer3.Text = tileId;
                         }
-                        else
-                        {
-                            this.pbTileLayer3.Image = Resources.sys_base;
-                            this.tbTileIdLayer3.Text = @"None";
-                        }
-                    }
-                    else
-                    {
-                        this.tbMovementType.Text = @"Unknown";
-                        this.pbTileLayer1.Image = Resources.sys_base;
-                        this.tbTileIdLayer1.Text = @"None";
-                        this.pbTileLayer2.Image = Resources.sys_base;
-                        this.tbTileIdLayer2.Text = @"None";
-                        this.pbTileLayer3.Image = Resources.sys_base;
-                        this.tbTileIdLayer3.Text = @"None";
                     }
                 }
                 else

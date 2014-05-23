@@ -65,46 +65,49 @@ namespace PokeEditorV3.Logic.Pointers
             var tileManager = GlobalManager.GetManager<TileManager>();
 
             // Get active tile based on which mouse button is pressed
-            string activeTile;
-            if (button == MouseButtons.Left)
-                activeTile = tileManager.ActiveTileLeft;
-            else if (button == MouseButtons.Right)
-                activeTile = tileManager.ActiveTileRight;
-            else
-                return false;
+            int[][] selectedSprites = tileManager.SelectedSprites;
 
             // Don't place tile if we dont have a tile selected
-            if (activeTile.IsNullOrWhiteSpace() || activeTile.Equals("0"))
+            if (selectedSprites.Length == 0)
                 return false;
 
             // Fetch TilePointTable for mapId
             TilePointTable tilePointTable;
             tileManager.GetTilePointTableForMap(mapId, out tilePointTable);
 
-            // Get TilePoint from table, creates new if it doesn't exists
-            var tilePoint = tilePointTable.GetTilePoint(tp.X, tp.Y);
-
-            bool tileChanged = tilePoint.IsNew;
-            
-            // Get TilePointLayer, creates new if it doesnt already exists
-            var tpLayer = tilePoint.GetLayer(TileManager.DEFAULT_LAYER, true);
-            if (tpLayer.Movement != tileManager.MovementType)
+            bool tileChanged = false;
+            for (int x = 0; x < selectedSprites.Length; x++)
             {
-                tpLayer.Movement = tileManager.MovementType;
-                tileChanged = true;
-            }
+                for (int y = 0; y < selectedSprites[x].Length; y++)
+                {
+                    int tpX = tp.X + x;
+                    int tpY = tp.Y + y;
 
-            // Get TilePointTileLayer, create new if it doesn't already exists
-            var tpTileLayer = tpLayer.GetLayer(tileManager.GetCurrentLayer(), true);
-            if (tpTileLayer.TileId != activeTile)
-            {
-                tpTileLayer.TileId = activeTile;
-                tileChanged = true;
-            }
+                    // Get TilePoint from table, creates new if it doesn't exists
+                    var tilePoint = tilePointTable.GetTilePoint(tpX, tpY);
+                    tileChanged = tilePoint.IsNew;
 
-            // Add TilePoint to TilePointTable if it's new
-            if (tilePoint.IsNew)
-                tilePointTable.AddTilePoint(tp);
+                    // Get TilePointLayer, creates new if it doesnt already exists
+                    var tpLayer = tilePoint.GetLayer(TileManager.DEFAULT_LAYER, true);
+                    if (tpLayer.Movement != tileManager.MovementType)
+                    {
+                        tpLayer.Movement = tileManager.MovementType;
+                        tileChanged = true;
+                    }
+
+                    // Get TilePointTileLayer, create new if it doesn't already exists
+                    var tpTileLayer = tpLayer.GetLayer(tileManager.GetCurrentLayer(), true);
+                    if (tpTileLayer.TileId != selectedSprites[x][y])
+                    {
+                        tpTileLayer.TileId = selectedSprites[x][y];
+                        tileChanged = true;
+                    }
+
+                    // Add TilePoint to TilePointTable if it's new
+                    if (tilePoint.IsNew)
+                        tilePointTable.AddTilePoint(tp);
+                }
+            }
 
             // TODO: Send ConnectionEvent with the tile data, only if tile is changed!
 

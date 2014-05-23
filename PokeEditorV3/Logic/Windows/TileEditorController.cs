@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NoNameLib.TileEditor;
 using NoNameLib.TileEditor.Collections;
@@ -88,6 +89,9 @@ namespace PokeEditorV3.Logic.Windows
         {
             tileEngine.Initialize();
             isOpenGLInitialized = true;
+
+            string textureKey = this.tileEngine.AddTexture("e:\\Users\\Mr_Dark\\Dropbox\\Pokemon Universe\\Mapping\\util\\Pokemon Universe Tileset 2.png");
+            Console.WriteLine("Texture: " + textureKey);
         }
 
         /// <summary>
@@ -199,7 +203,7 @@ namespace PokeEditorV3.Logic.Windows
 
         #endregion
 
-        #region Toolbar 
+        #region Toolbar
 
         /// <summary>
         /// Change the active tile editor pointer.

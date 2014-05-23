@@ -61,6 +61,12 @@
   <ItemGroup>
     <Compile Include="Configuration\EditorConfigConstants.cs" />
     <Compile Include="Configuration\EditorConfigInfo.cs" />
+    <Compile Include="Dialogs\FrmNewTilesetDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmNewTilesetDialog.Designer.cs">
+      <DependentUpon>FrmNewTilesetDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\FrmOkDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,7 @@
     <Compile Include="Logic\Dialogs\DialogBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logic\Dialogs\NewTilesetController.cs" />
     <Compile Include="Logic\Dialogs\OkButtonContainer.cs" />
     <Compile Include="Logic\EventDispatcher.cs" />
     <Compile Include="Logic\Events\ConnectionEvent.cs" />
@@ -98,6 +105,8 @@
     <Compile Include="Logic\Managers\StartupManager.cs" />
     <Compile Include="Logic\Managers\TileManager.cs" />
     <Compile Include="Logic\Managers\ViewManager.cs" />
+    <Compile Include="Logic\Models\ActiveSprites.cs" />
+    <Compile Include="Logic\Models\TilesetModel.cs" />
     <Compile Include="Logic\Pointers\EraserPointer.cs" />
     <Compile Include="Logic\Pointers\IPointer.cs" />
     <Compile Include="Logic\Pointers\MoverPointer.cs" />
@@ -158,6 +167,9 @@
     <Compile Include="Windows\Subpanels\UcSettingsTabGeneral.Designer.cs">
       <DependentUpon>UcSettingsTabGeneral.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\FrmNewTilesetDialog.resx">
+      <DependentUpon>FrmNewTilesetDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmOkDialog.resx">
       <DependentUpon>FrmOkDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +207,7 @@
     <EmbeddedResource Include="Windows\Subpanels\UcSettingsTabGeneral.resx">
       <DependentUpon>UcSettingsTabGeneral.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\PokeEditorV3.Logic.Models.TilesetModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -208,7 +221,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\picture_add.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NoNameLib\NoNameLib.TileEditor\NoNameLib.TileEditor.csproj">
       <Project>{d1df9a5b-965b-406a-8499-7dc9d2b79cea}</Project>

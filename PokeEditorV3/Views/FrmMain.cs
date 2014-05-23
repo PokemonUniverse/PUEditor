@@ -32,7 +32,9 @@ namespace PokeEditorV3.Views
 
         private void InitializeWindows()
         {
-            
+            //mainController.ShowWindow(typeof(FrmTextureBrowser), DockState.DockLeft);
+
+            //new FrmNewTilesetDialog().ShowDialog(this);
         }
 
         private void HookupEvents()
@@ -85,6 +87,11 @@ namespace PokeEditorV3.Views
             mainController.ShowWindow(typeof(FrmTileInfo), DockState.DockLeft);
         }
 
+        private void tileSetBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mainController.ShowWindow(typeof(FrmTextureBrowser), DockState.DockLeft);
+        }
+
         #endregion
 
         #region Tools
@@ -104,6 +111,7 @@ namespace PokeEditorV3.Views
         }
 
         #endregion
+
 
         #endregion
     }
